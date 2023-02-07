@@ -1,32 +1,18 @@
-import React, { useState } from "react";
-import { Button, Grid, TextField, Typography } from "@material-ui/core";
+import React from "react";
+import { Button, Grid, Typography } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import countries from "./countries";
+
 import dropdown from "./dropdown.js";
-import plus from "./images/plus.jpeg";
+
+import SearchBar from "./SearchBar/SearchBar";
+import BookData from "./data.json";
 
 import useStyles from "./styles.js";
 
 import { faBars, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const App = () => {
-  const [value, setValue] = useState("");
-  const [result, setresult] = useState([]);
   const classes = useStyles();
-  const handlechange = (e) => {
-    setValue(e.target.value);
-    console.log(value);
-    let result1 = countries.filter(checkstring);
-    console.log(result1);
-    setresult(result1);
-    console.log(result, "result printed");
-  };
-
-  function checkstring(country) {
-    console.log(value, country);
-    // return value === country.name;
-    return country.name.includes(value);
-  }
 
   return (
     <>
@@ -150,25 +136,7 @@ const App = () => {
         </Grid>
 
         <Grid item xs={9}>
-          <TextField
-            name="title"
-            variant="outlined"
-            label="Title"
-            fullWidth
-            onChange={handlechange}
-          />
-
-          {value === "" &&
-            countries.map((country) => (
-              <div>
-                <Typography> {country.name}</Typography>
-              </div>
-            ))}
-          {result.map((country) => (
-            <div>
-              <Typography> {country.name}</Typography>
-            </div>
-          ))}
+          <SearchBar placeholder="Enter a Book Name..." data={BookData} />
         </Grid>
       </Grid>
     </>

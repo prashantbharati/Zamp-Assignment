@@ -1,6 +1,4 @@
 import {
-  faAddressBook,
-  faBars,
   faCodeMerge,
   faContactBook,
   faDumpster,
